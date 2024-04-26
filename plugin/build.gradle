@@ -1,0 +1,45 @@
+plugins {
+	id 'maven-publish'
+	id 'java-gradle-plugin'
+}
+
+group = 'kz.diploma.shared'
+version = '1.0.0'
+java.sourceCompatibility = JavaVersion.VERSION_17
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation('io.spring.gradle:dependency-management-plugin:1.1.4')
+	implementation('org.springframework.boot:spring-boot-gradle-plugin:3.2.5')
+}
+
+publishing {
+	publications{
+		plugin(MavenPublication){
+			from components.java
+		}
+	}
+	repositories {
+		maven {
+			name = "GitHubPackages"
+			url = uri("https://maven.pkg.github.com/diploma-atm/dependency-management")
+			credentials {
+				username = "fragerrr"
+				password = "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"
+			}
+		}
+	}
+}
+
+gradlePlugin {
+	plugins {
+		create("dependencyManagement") {
+			// This ID is used by the dependent projects in the plugins block
+			id = "kz.diploma.dependency-management"
+			implementationClass = "kz.diploma.shared.dependency.management.DependencyManagementPlugin"
+		}
+	}
+}
