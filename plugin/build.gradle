@@ -17,11 +17,6 @@ dependencies {
 }
 
 publishing {
-	publications{
-		plugin(MavenPublication){
-			from components.java
-		}
-	}
 	repositories {
 		maven {
 			name = "GitHubPackages"
@@ -30,6 +25,11 @@ publishing {
 				username = "fragerrr"
 				password = "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"
 			}
+		}
+	}
+	publications {
+		gpr(MavenPublication) {
+			from(components.java)
 		}
 	}
 }
