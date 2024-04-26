@@ -3,7 +3,7 @@ plugins {
 	id 'java-gradle-plugin'
 }
 
-group = 'kz.diploma.shared'
+group = 'kz.diploma.shared.dependency.management'
 version = '1.0.0'
 java.sourceCompatibility = JavaVersion.VERSION_17
 
